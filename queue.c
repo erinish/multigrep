@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <strings.h>
+#include <string.h>
 #include <unistd.h>
 #include <regex.h>
 #include "queue.h"
@@ -66,7 +66,9 @@ void reset_queue()
 {
     while ( queuelen > 0 )
     {
-        deque();
+       free(deque());
     }
+    first = NULL;
+    end = NULL;
 }
 
