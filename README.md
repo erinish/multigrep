@@ -30,3 +30,5 @@ Multigrep's use case is for finding multiple matching nodes in unstructured or s
 to return only the first entry, one might use the following command:
 
     ./multigrep -s '<Log>' -e '</Log>' -n 'Unimportant condition' 'Important Error' < logfile.log > errors.log
+
+One can pass POSIX basic regular expressions to any of the match options.
