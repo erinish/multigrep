@@ -1,6 +1,6 @@
 Multigrep -- a small tool for multiline text searching.
 
-v1.0
+v0.1
 ==============
     
         USAGE: ./multigrep -s 'start' -e 'end' [-n 'negative match'] 'match'
