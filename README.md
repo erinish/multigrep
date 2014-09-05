@@ -8,6 +8,7 @@ v0.1
     OPTIONS:
             -e      ending regex
             -h      print this help
+            -n      negative regex
             -s      starting regex
             -v      version information
 

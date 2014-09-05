@@ -11,6 +11,7 @@ void usage()
     puts("\nOPTIONS:");
     puts("\t-e\tending regex");
     puts("\t-h\tprint this help");
+    puts("\t-n\tnegative regex");
     puts("\t-s\tstarting regex");
     puts("\t-v\tversion information");
     exit(0);
