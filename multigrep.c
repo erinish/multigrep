@@ -5,6 +5,23 @@
 #include <unistd.h>
 #include "queue.h"
 
+void usage()
+{
+    puts("USAGE: ./multigrep -s 'start' -e 'end' [-n 'negative match'] 'match'");
+    puts("\nOPTIONS:");
+    puts("\t-e\tending regex");
+    puts("\t-h\tprint this help");
+    puts("\t-s\tstarting regex");
+    puts("\t-v\tversion information");
+    exit(0);
+}
+
+void version()
+{
+    puts("Multigrep v0.1");
+    exit(0);
+}
+
 int check_reqs(short rlen, short *rb)
 {
     short count;
@@ -22,7 +39,6 @@ int check_reqs(short rlen, short *rb)
 void reset_reqs(short rlen, short *rb)
 {
     short count;
-    short check = 1;
     for (count = 0; count < rlen; count++) {
         rb[count] = 0;
     }
@@ -44,20 +60,30 @@ int main(int argc, char *argv[])
     short end_b = 0;
     short not_opt = 0;
     short not_b = 0;
+    short opt_s = 0;
+    short opt_e = 0;
 
     /* Process commandline args */
-    while ((ch = getopt(argc, argv, "s:e:n:")) != EOF)
+    while ((ch = getopt(argc, argv, "s:e:n:hv")) != EOF)
     {
         switch(ch) {
             case 's':
                 reti = regcomp(&start_n, optarg, 0);
+                opt_s = 1;
                 break;
             case 'e':
                 reti = regcomp(&end_n, optarg, 0);
+                opt_e = 1;
                 break;
             case 'n':
                 reti = regcomp(&not_n, optarg, 0);
                 not_opt = 1;
+                break;
+            case 'h':
+                usage();
+                break;
+            case 'v':
+                version();
                 break;
             default:
                 fprintf(stderr, "Unknown option: '%s'\n", optarg);
@@ -67,6 +93,10 @@ int main(int argc, char *argv[])
 
     argc -= optind; // optind is the index of the next arg
     argv += optind; // adding index to the pointer
+
+    if (!opt_s || !opt_e || argc <= 0) {
+        usage();
+    }
 
     if (argc > 10) {
         fprintf(stderr, "No more than 10 requirements");

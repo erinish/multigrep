@@ -2,8 +2,14 @@ Multigrep -- a small tool for multiline text searching.
 
 v1.0
 ==============
+    
+        USAGE: ./multigrep -s 'start' -e 'end' [-n 'negative match'] 'match'
 
-USAGE: ./multigrep -s "startmatch" -e "endmatch" -n "negative match" "match"
+    OPTIONS:
+            -e      ending regex
+            -h      print this help
+            -s      starting regex
+            -v      version information
 
 
 Multigrep's use case is for finding multiple matching nodes in unstructured or semi-structured text. For example, take the below partial logfile.
